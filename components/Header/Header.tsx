@@ -109,14 +109,21 @@ export function HeaderMenuColored({ links }: HeaderSearchProps) {
     }
 
     return (
-      <a
+      <Link 
         key={link.label}
-        href={link.link}
-        className={classes.link}
-      //onClick={(event) => event.preventDefault()}
-      >
-        {link.label}
-      </a>
+        href={link.link}   
+        passHref
+        >
+       <a className={classes.link}>{link.label}</a>
+      </Link>
+      // <a
+      //   key={link.label}
+      //   href={link.link}
+      //   className={classes.link}
+      // //onClick={(event) => event.preventDefault()}
+      // >
+      //   {link.label}
+      // </a>
     );
   });
 

@@ -9,7 +9,7 @@ export function BitcoinData() {
   const theme = useMantineTheme();
 
 
-  let { data, error } = useCoinDetailFull("bitcoin");
+  let { data, error } = useCoinDetailFull("ethereum");
   if (error) return <div>failed to load</div>
   if (!data) return <Loader size="xl" />
 
@@ -89,7 +89,7 @@ export function BitcoinData() {
         </Stack>
         <Stack spacing="xs">
           <Text size="md" color="dimmed">Max Supply</Text>
-          <Text size="lg" weight={700}>{data.market_data.max_supply.toLocaleString()} BTC</Text>
+          <Text size="lg" weight={700}>{data?.market_data?.max_supply?.toLocaleString() || "n/a" } BTC</Text>
         </Stack>
       </Group>
     </>
