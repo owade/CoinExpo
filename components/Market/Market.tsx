@@ -2,7 +2,8 @@ import { useMarket } from '../../Hooks/useMarket';
 import { useState } from 'react';
 import { MarketSkeleton } from '../../components/Market/SkeletonMarket';
 import { THeader } from '../../components/Market/THeader';
-import { Table, Container, Grid, Pagination, Center, createStyles, UnstyledButton } from '@mantine/core';
+import Link from 'next/link';
+import { Table, Container, Grid, Pagination, Center, createStyles, UnstyledButton,Anchor} from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -49,7 +50,11 @@ export function MarketData() {
 
   const rows = data.map((element, idx) => (
     <tr key={element.id}>
-      <td>{element.name}</td>
+      <td>
+        <Link href={`/coins/${element.name}`} passHref>
+          <Anchor component="a">{element.name}</Anchor>
+        </Link>
+        </td>
       <td>{element.current_price}</td>
       <td>{element.market_cap}</td>
       <td>{element.total_supply}</td>

@@ -1,6 +1,7 @@
 import { useState, SetStateAction } from 'react';
 import { Market } from '../../Types/Market';
 import { Sparkline } from './Sparkline';
+import Link from 'next/link';
 import { SparklineV2 } from './SparklineV2';
 import {
   createStyles,
@@ -10,7 +11,7 @@ import {
   Group,
   Text,
   Center,
-  TextInput, Avatar, Pagination
+  TextInput, Avatar, Pagination,Anchor
 } from '@mantine/core';
 import { keys } from '@mantine/utils';
 import { IconSelector, IconChevronDown, IconChevronUp, IconSearch } from '@tabler/icons';
@@ -132,9 +133,12 @@ export function TableSort(data: TableSortProps) {
       <td>
         <Group spacing="sm">
           <Avatar size={26} src={row.image} radius={26} />
-          <Text size="md" weight={500}>
+          <Link href={`/coins/${row.id}`} passHref>
+          <Anchor component="a">{row.name}</Anchor>
+         </Link>
+          {/* <Text size="md" weight={500}>
             {row.name}
-          </Text>
+          </Text> */}
         </Group>
 
       </td>

@@ -11,7 +11,7 @@ export function Testing() {
   let { data, error } = useMarket(activePage, "market_cap_desc");
   if (error) return <div>failed to load</div>
   if (!data) return <MarketSkeleton />
-  console.log(activePage);
+  //console.log(data[0].id);
   return (
     <>
       <Title order={1}>Today's Cryptocurrency Prices</Title>

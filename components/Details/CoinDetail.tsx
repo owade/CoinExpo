@@ -2,19 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { Space, SegmentedControl, Group, Text, Stack, useMantineTheme, Image, Loader } from '@mantine/core';
 import { useCoinDetailFull } from '../../Hooks/useCoinDetailFull';
 import { Chart } from './Chart';
+import { useRouter } from 'next/router';
+import NotFoundImage from 'components/Error/404';
 
 
-export function BitcoinData() {
+export function CoinData({ name }: { name: string | string[] | undefined }) {
   const [value, setValue] = useState('1');
   const theme = useMantineTheme();
 
+  const router = useRouter();
 
-  let { data, error } = useCoinDetailFull("ethereum");
-  if (error) return <div>failed to load</div>
-  if (!data) return <Loader size="xl" />
+  let { data, error } = useCoinDetailFull(name as string);
+
+  if (error) {
+    return <div>failed to load</div>
+  }
+
+  if (!data) {
+    return <Loader size="xl" />
+  }
+
+
+  if (!data.name) {
+    return <NotFoundImage />
+  }
+
 
   const changePerc24 = () => {
-    return data?.market_data.price_change_percentage_24h;
+    return data?.market_data?.price_change_percentage_24h;
   }
 
   const setColor = () => {
@@ -31,26 +46,26 @@ export function BitcoinData() {
   }
 
   function capitalizeFirstLetter(str: string) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    return str?.charAt(0)?.toUpperCase() + str?.slice(1);
   }
-  console.log(data.market_data.current_price.usd)
+
 
   return (
 
     <>
       <Stack spacing="xs">
         <Group>
-          <Text size={32} weight={700}>${data.market_data.current_price.usd.toLocaleString()} USD</Text>
+          <Text size={32} weight={700}>${data?.market_data?.current_price?.usd?.toLocaleString()} USD</Text>
           <Text size={24} color={setColor()}>{changePerc24()}%(24H)</Text>
         </Group>
         <Group>
           <img
-            src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579"
+            src={data?.image?.thumb}
             alt="coin image" />
           <Text size={28} weight={500}>{capitalizeFirstLetter(data.id)} </Text>
-          <Text size={22} weight={400}>{data.symbol}</Text>
+          <Text size={22} weight={400}>{data?.symbol}</Text>
         </Group>
-        <Text size={10}>{data.market_data.last_updated + ''}</Text>
+        <Text size={10}>{data?.market_data?.last_updated + ''}</Text>
 
       </Stack>
       <Space h="xl" />
@@ -72,24 +87,24 @@ export function BitcoinData() {
       </Group>
 
       <Space h="lg" />
-      <Chart time={value} />
+      <Chart time={value} name={name as string} />
       <Space h="xl" />
       <Group position="apart">
         <Stack spacing="xs">
           <Text size="md" color="dimmed">Market Cap (USD)</Text>
-          <Text size="lg" weight={700}>${data.market_data.market_cap.usd.toLocaleString()}</Text>
+          <Text size="lg" weight={700}>${data?.market_data?.market_cap?.usd?.toLocaleString()}</Text>
         </Stack>
         <Stack spacing="xs">
           <Text size="md" color="dimmed">24H VOLUME (USD)</Text>
-          <Text size="lg" weight={700}>${data.market_data.total_volume.usd.toLocaleString()}</Text>
+          <Text size="lg" weight={700}>${data?.market_data?.total_volume?.usd?.toLocaleString()}</Text>
         </Stack>
         <Stack spacing="xs">
           <Text size="md" color="dimmed">Circulating Supply</Text>
-          <Text size="lg" weight={700}>{data.market_data.circulating_supply.toLocaleString()} BTC</Text>
+          <Text size="lg" weight={700}>{data?.market_data?.circulating_supply?.toLocaleString()}</Text>
         </Stack>
         <Stack spacing="xs">
           <Text size="md" color="dimmed">Max Supply</Text>
-          <Text size="lg" weight={700}>{data?.market_data?.max_supply?.toLocaleString() || "n/a" } BTC</Text>
+          <Text size="lg" weight={700}>{data?.market_data?.max_supply?.toLocaleString() || "-"} </Text>
         </Stack>
       </Group>
     </>

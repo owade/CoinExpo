@@ -1,4 +1,7 @@
 import { createStyles, Paper, Group } from '@mantine/core';
+import Link from 'next/link';
+import { useRouter } from 'next/router'
+import { Dispatch, SetStateAction } from 'react';
 
 
 const useStyles = createStyles((theme) => ({
@@ -19,19 +22,32 @@ const useStyles = createStyles((theme) => ({
 interface ItemProps {
   item: string;
   photo: string;
+  id: string;
+  setMopened: Dispatch<SetStateAction<boolean>>;
+  //setMopened: any;
 }
 
-const SearchCard = ({ item, photo }: ItemProps) => {
+export const SearchCard = ({ item, photo, id, setMopened }: ItemProps) => {
   const { classes, cx } = useStyles();
+  const router = useRouter();
+
+
+  const handleClick = () => {
+    setMopened(false);
+    router.push(`/coins/${id}`);    
+  }
+
   return (
+    // <Link href={`/coins/${id}`} passHref>
     <Paper
       className={classes.card}
       shadow="lg"
       p="md"
       withBorder
       m="md"
+      onClick={handleClick}
       component="a"
-      href="#">
+    >
       <Group>
         <img
           src={photo}
@@ -40,7 +56,7 @@ const SearchCard = ({ item, photo }: ItemProps) => {
       </Group>
 
     </Paper>
+
   );
 }
 
-export { SearchCard }

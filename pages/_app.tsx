@@ -6,6 +6,7 @@ import Head from 'next/head';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import Layout from '../components/Layout/Layout';
+import NextNProgress from "nextjs-progressbar";
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
@@ -19,6 +20,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
 
   return (
     <>
+      <NextNProgress options={{ showSpinner: false }} />
       <Head>
         <title>Coin Expo</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
@@ -26,12 +28,12 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
       </Head>
 
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-        <MantineProvider 
-          withGlobalStyles 
-          withNormalizeCSS 
-          theme={{ 
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{
             colorScheme,
-            white:'#f8f9fa'
+            white: '#f8f9fa'
           }} >
           <NotificationsProvider>
             <Layout>

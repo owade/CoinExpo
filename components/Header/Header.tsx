@@ -70,6 +70,7 @@ interface HeaderSearchProps {
 export function HeaderMenuColored({ links }: HeaderSearchProps) {
   const [opened, { toggle }] = useDisclosure(false);
   const [mopened, setMopened] = useState(false);
+  const [test, setTest] = useState("test");
   const [value, setValue] = useState("btc");
   const { classes } = useStyles();
   const { mutate } = useSWRConfig();
@@ -109,12 +110,12 @@ export function HeaderMenuColored({ links }: HeaderSearchProps) {
     }
 
     return (
-      <Link 
+      <Link
         key={link.label}
-        href={link.link}   
+        href={link.link}
         passHref
-        >
-       <a className={classes.link}>{link.label}</a>
+      >
+        <a className={classes.link}>{link.label}</a>
       </Link>
       // <a
       //   key={link.label}
@@ -152,7 +153,7 @@ export function HeaderMenuColored({ links }: HeaderSearchProps) {
 
 
   return (
-    <Header height={56} mb={80}>
+    <Header height={56} mb={10}>
       <Container fluid>
         <Modal
           opened={mopened}
@@ -179,7 +180,7 @@ export function HeaderMenuColored({ links }: HeaderSearchProps) {
 
           {data &&
             <ScrollArea style={{ height: 250 }} p={10} type="always">
-              {data?.coins.map((x) => <SearchCard key={x.id} item={x.name} photo={x.thumb} />)}
+              {data?.coins.map((x) => <SearchCard key={x.id} item={x.name} setMopened={setMopened} id={x.id} photo={x.thumb} />)}
             </ScrollArea>}
 
         </Modal>

@@ -7,7 +7,7 @@ import { useMantineTheme,Skeleton } from '@mantine/core';
 
 
 
-function getOptions(data: CoinPrice, time: string, compTheme: string) {
+function getOptions(data: CoinPrice, time: string, compTheme: string, name: string) {
   return (
     {
       chart: {
@@ -37,7 +37,7 @@ function getOptions(data: CoinPrice, time: string, compTheme: string) {
         pointFormat: 'Price (USD): <b>${point.y:,.2f}</b><br/>',
       },
       title: {
-        text: `Bitcoin price ${time} ${time === '1' ? 'day' : 'days'}`,
+        text: `${name} price ${time} ${time === '1' ? 'day' : 'days'}`,
         style: {
           color: `${compTheme === 'dark' ? 'white' : 'black'}`,
           font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
@@ -90,9 +90,10 @@ function getOptions(data: CoinPrice, time: string, compTheme: string) {
 
 interface Iprops {
   time: string;
+  name: string;
 }
 
-export function Chart({ time }: Iprops) {
+export function Chart({ time, name }: Iprops) {
   const theme = useMantineTheme();
   const [loading, setLoading] = useState(false);
 
@@ -106,7 +107,7 @@ export function Chart({ time }: Iprops) {
     });
   }, []);
 
-  let { data, error } = useCoinPrice(time);
+  let { data, error } = useCoinPrice(time, name);
   if (error) return <div>failed to load</div>
   if (!data) return <Skeleton height={400} width={855} />
 
@@ -117,7 +118,7 @@ export function Chart({ time }: Iprops) {
   return (
     <>
 
-        <HighchartsReact highcharts={Highcharts} options={getOptions(data, time, theme.colorScheme)} />
+        <HighchartsReact highcharts={Highcharts} options={getOptions(data, time, theme.colorScheme,name)} />
 
     </>
     

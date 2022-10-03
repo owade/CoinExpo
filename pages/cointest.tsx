@@ -1,15 +1,15 @@
 
-//import { BitcoinData } from '../components/Details/Bitcoin';
+
 import React from 'react';
 import { Container } from '@mantine/core';
-import {BitcoinData} from "../components/Details/Bitcoin";
+import {CoinData} from "../components/Details/CoinDetail";
 
 
 export default function CoinTest() {
 
   return (
     <Container>
-      <BitcoinData />
+      <CoinData name={name} />
     </Container>
   )
 }
