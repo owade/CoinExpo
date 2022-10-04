@@ -11,7 +11,7 @@ import {
   Group,
   Text,
   Center,
-  TextInput, Avatar, Pagination,Anchor
+  TextInput, Avatar, Pagination, Anchor
 } from '@mantine/core';
 import { keys } from '@mantine/utils';
 import { IconSelector, IconChevronDown, IconChevronUp, IconSearch } from '@tabler/icons';
@@ -134,8 +134,8 @@ export function TableSort(data: TableSortProps) {
         <Group spacing="sm">
           <Avatar size={26} src={row.image} radius={26} />
           <Link href={`/coins/${row.id}`} passHref>
-          <Anchor component="a">{row.name}</Anchor>
-         </Link>
+            <Anchor component="a">{row.name}</Anchor>
+          </Link>
           {/* <Text size="md" weight={500}>
             {row.name}
           </Text> */}
