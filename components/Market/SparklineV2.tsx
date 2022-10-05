@@ -4,7 +4,7 @@ import { Sparklines, SparklinesLine } from 'react-sparklines';
 export function SparklineV2({ data }: { data: number[] }) {
 
   const status = () => {
-    let temp = data?.at(-1) - data?.at(0);
+    let temp = (data)?.[data.length-1] - data?.[0];
     if (temp < 0) {
       return "red";
     } else if (temp === 0) {

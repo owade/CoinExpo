@@ -50,7 +50,7 @@ interface TableSortProps {
 }
 
 interface ThProps {
-  children: React.ReactNode;
+  children: JSX.Element;
   reversed?: boolean;
   sorted?: boolean;
   onSort?(): void;
@@ -101,11 +101,15 @@ function sortData(
   }
 
   return filterData(
-    [...data].sort((a, b) => {
+    data.sort((a, b) => {
+      let k = a?.[sortBy] ?? ""
+      let v = b?.[sortBy] ?? ""
       if (payload.reversed) {
-        return a?.[sortBy!] > b?.[sortBy] ? -1 : 1
+
+        return k > v ? -1 : 1;
+        //return (a![sortBy]) > (b?.[sortBy]) ? -1 : 1
       }
-      return a?.[sortBy] > b?.[sortBy] ? 1 : -1
+      return k > v ? 1 : -1
     }),
     payload.search
   );
