@@ -1,4 +1,5 @@
 import { createStyles, Container, Text, Button, Group } from '@mantine/core';
+import Head from 'next/head';
 import Link from 'next/link';
 
 
@@ -72,37 +73,47 @@ export function Welcome() {
   const { classes } = useStyles();
 
   return (
-    <div className={classes.wrapper}>
-      <Container size={1000} className={classes.inner}>
-        <h1 className={classes.title}>
-          View{' '}
-          <Text component="span" variant="gradient" gradient={{ from: 'blue', to: 'cyan' }} inherit>
-            top cryptocurrencies
-          </Text>{' '}
-          Details, Prices and Historical Charts
-        </h1>
+    <>
+      <Head>
+        <title>Crypto Price Tracker</title>
+        <meta
+          property="og:title"
+          content="Cryptocurrency price tracker using coingecko api; independently sourced crypto data such as live prices, trading volume, exchange volumes, trading pairs, &amp; more."
+          key="title" />
+      </Head>
+      <div className={classes.wrapper}>
+        <Container size={1000} className={classes.inner}>
+          <h1 className={classes.title}>
+            View{' '}
+            <Text component="span" variant="gradient" gradient={{ from: 'blue', to: 'cyan' }} inherit>
+              top cryptocurrencies
+            </Text>{' '}
+            Details, Prices and Historical Charts
+          </h1>
 
-        <Text className={classes.description} color="dimmed">
-          Do you want to know the top trending coins and their details? – CoinExpo includes more than
-          1000 coins from coingecko and their corresponding detailed information
-        </Text>
+          <Text className={classes.description} color="dimmed">
+            Do you want to know the top trending coins and their details? – CoinExpo includes more than
+            1000 coins from coingecko and their corresponding detailed information
+          </Text>
 
-        <Group className={classes.controls}>
-          <Link href="/market" passHref>
-            <Button
-              size="xl"
-              className={classes.control}
-              variant="gradient"
-              gradient={{ from: 'blue', to: 'cyan' }}
-            >
-              Markets
-            </Button>
+          <Group className={classes.controls}>
+            <Link href="/market" passHref>
+              <Button
+                size="xl"
+                className={classes.control}
+                variant="gradient"
+                gradient={{ from: 'blue', to: 'cyan' }}
+              >
+                Markets
+              </Button>
 
-          </Link>
+            </Link>
 
 
-        </Group>
-      </Container>
-    </div>
+          </Group>
+        </Container>
+      </div>
+    </>
+
   );
 }

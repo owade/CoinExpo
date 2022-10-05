@@ -5,7 +5,7 @@ import { ColorSchemeToggle } from '../../components/ColorSchemeToggle/ColorSchem
 export default function Layout({ children }: { children: React.ReactNode }) {
   const links = [
     { link: "/trending", label: "Trending"},
-    { link: "A", label: "Global"},
+    { link: "/chain", label: "Chains"},
     { link: "/market", label: "Markets" },
   ]
 

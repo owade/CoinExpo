@@ -1,4 +1,4 @@
-import { createStyles, Header, Menu, Group, Center, Burger, Container, TextInput, Text, Modal, ScrollArea, Divider, Loader } from '@mantine/core';
+import { createStyles, Header, Menu, Group, Center, Collapse, Burger, Container, TextInput, Text, Modal, ScrollArea, Divider, Loader, Drawer, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown, IconSearch } from '@tabler/icons';
 import { ColorSchemeToggle } from '../../components/ColorSchemeToggle/ColorSchemeToggle';
@@ -115,7 +115,7 @@ export function HeaderMenuColored({ links }: HeaderSearchProps) {
         href={link.link}
         passHref
       >
-        <a className={classes.link}>{link.label}</a>
+        <a className={classes.link} >{link.label}</a>
       </Link>
       // <a
       //   key={link.label}
@@ -125,6 +125,19 @@ export function HeaderMenuColored({ links }: HeaderSearchProps) {
       // >
       //   {link.label}
       // </a>
+    );
+  });
+
+  const items2 = links.map((link) => {    
+    return (
+      <Link
+        key={link.label}
+        href={link.link}
+        passHref
+      >
+        <a className={classes.link} onClick={toggle}>{link.label}</a>
+      </Link>
+
     );
   });
 
@@ -194,6 +207,7 @@ export function HeaderMenuColored({ links }: HeaderSearchProps) {
             {items}
           </Group>
           <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
+
           <Group>
             <TextInput
               placeholder="Search"
@@ -205,7 +219,16 @@ export function HeaderMenuColored({ links }: HeaderSearchProps) {
           </Group>
 
         </div>
-
+        <Drawer
+          opened={opened}
+          onClose={toggle}
+          padding="xl"
+          size="md"
+        >
+          <Stack >
+            {items2}
+          </Stack>
+        </Drawer>
       </Container>
     </Header>
   );

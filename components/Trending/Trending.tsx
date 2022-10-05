@@ -10,12 +10,9 @@ function TrendCard() {
         <Container >
              <SimpleGrid cols={3} >
                 {data?.coins.map(x => {
-                    return <CardItem name={x.item.name} key={x.item.id} price={x.item.price_btc} url={x.item.large} score={x.item.score} />
+                    return <CardItem name={x.item.name} key={x.item.coin_id} id={x.item.id} price={x.item.price_btc} url={x.item.large} score={x.item.score} />
                 })}
             </SimpleGrid>
-
-
-
         </Container>
 
     );
