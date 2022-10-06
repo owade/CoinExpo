@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import NotFoundImage from 'components/Error/404';
 
 
-export function CoinData({ name }: { name: string | string[] | undefined }) {
+ function CoinData({ name }: { name: string }) {
   const [value, setValue] = useState('1');
   const theme = useMantineTheme();
 
@@ -112,4 +112,6 @@ export function CoinData({ name }: { name: string | string[] | undefined }) {
 
   )
 }
+
+export {CoinData}
 
