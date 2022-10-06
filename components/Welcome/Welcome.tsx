@@ -76,6 +76,7 @@ export function Welcome() {
     <>
       <Head>
         <title>Crypto Price Tracker</title>
+        <meta name="google-site-verification" content="0JejSSzxygMxVxk0GpcxvVsu5K3Qb0E0j8DH5RElQ_A" />
         <meta
           property="og:title"
           content="Cryptocurrency price tracker using coingecko api; independently sourced crypto data such as live prices, trading volume, exchange volumes, trading pairs, &amp; more."
