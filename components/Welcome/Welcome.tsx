@@ -80,7 +80,7 @@ export function Welcome() {
         <meta
           property="og:title"
           content="Cryptocurrency price tracker using coingecko api; independently sourced crypto data such as live prices, trading volume, exchange volumes, trading pairs, &amp; more."
-          key="title" />
+           />
       </Head>
       <div className={classes.wrapper}>
         <Container size={1000} className={classes.inner}>
